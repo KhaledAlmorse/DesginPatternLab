@@ -12,7 +12,7 @@ import library.proxy.EBookProxy;
 public class Main {
     public static void main(String[] args) {
 
-        // REQUIREMENT 1: Singleton
+        //  Singleton
         LibraryFacade library = new LibraryFacade();
         System.out.println("=== Library Management System ===\n");
 
@@ -20,27 +20,27 @@ public class Main {
         User john = new User("John", true);
         User alice = new User("Alice", false);
 
-        // REQUIREMENT 2: Factory Method
+        //  Factory Method
         Book harryPotter = BookFactory.createBook(BookFactory.BookType.PHYSICAL, "Harry Potter");
         Book lotr = BookFactory.createBook(BookFactory.BookType.HISTORICAL, "Lord of the Rings");
         EBook dpatterns = (EBook) BookFactory.createBook(BookFactory.BookType.EBOOK, "Design Patterns");
 
-        // REQUIREMENT 3: Decorator
+        //  Decorator
         BookInterface premiumHarryPotter = new PremiumBookDecorator(harryPotter);
 
-        // REQUIREMENT 4: Proxy
+        //  Proxy
         BookInterface protectedEBook = new EBookProxy(dpatterns);
 
         library.addBook(premiumHarryPotter);
         library.addBook(lotr);
         library.addBook(protectedEBook);
 
-        // REQUIREMENT 7: Adapter
+        //  Adapter
         ExternalBookData externalData = new ExternalBookData("Clean Code", true, "Robert Martin", 2008);
         BookInterface adaptedBook = new BookAdapter(externalData);
         library.addBook(adaptedBook);
 
-        // REQUIREMENT 8: Observer
+        //  Observer
         library.subscribeForNotifications(john);
         library.subscribeForNotifications(alice);
 
